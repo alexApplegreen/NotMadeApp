@@ -1,3 +1,26 @@
 page-home {
+    background: color($colors, dark);
+    color: color($colors, light)
+}
 
+ion-content {
+    background: color($colors, dark);
+    color: color($colors, light);
+}
+
+h2 {
+    text-align: center;
+}
+
+p {
+  text-align: center;
+}
+
+nm_divider {
+    align-items: center;
+    align-content: center;
+}
+
+nm_header {
+    text-align: center;
 }
