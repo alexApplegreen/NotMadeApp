@@ -8,39 +8,41 @@
 </ion-header>
 
 <ion-content padding>
-  <div class="nm_centered_image">
-    <img src="images/notmade_freigestellt.png">
-  </div>
-  <div class="nm_header">
-    <p>
-      Alternative Rock | Osnabrück
-    </p>
-  </div>
-  <div class="nm_centered_image">
-    <img src="images/divider_black.png">
-  </div>
-  <div id="nm_gigs_box">
-    <h2 style="margin-top: 20px">
-      Upcoming Gigs:
-    </h2>
-  </div>
-  <script src="https://unpkg.com/cosmicjs@3.0.1/cosmicjs.browser.min.js"></script>
-  <script>
-    // TODO fix this shit
-    var bucket = Cosmic.bucket({
-      slug: 'gigs-upcoming'
-    });
-    console.log("created bucket");
-    bucket.getObject().then(data => {
-      var objects = data.objects;
-      var markup = '';
-      objects.forEach(function(object) {
-        console.log(object.title);
-        markup += '<div>' + object.title + '</div>';
+  <div class="home_body" style="background: black; color: white;">
+    <div class="nm_centered_image">
+      <img src="images/notmade_freigestellt_weiß.png">
+    </div>
+    <div class="nm_header">
+      <p>
+        Alternative Rock | Osnabrück
+      </p>
+    </div>
+    <div class="nm_centered_image">
+      <img src="images/divider_white.png">
+    </div>
+    <div id="nm_gigs_box">
+      <h2 style="margin-top: 20px">
+        Upcoming Gigs:
+      </h2>
+    </div>
+    <script src="https://unpkg.com/cosmicjs@3.0.1/cosmicjs.browser.min.js"></script>
+    <script>
+      // TODO fix this shit
+      var bucket = Cosmic.bucket({
+        slug: 'gigs-upcoming'
       });
-      document.getElementById('nm_gigs_box').innerHTML = markup
-    }).catch(err => {
-      console.log(err);
-    });
-  </script>
+      console.log("created bucket");
+      bucket.getObject().then(data => {
+        var objects = data.objects;
+        var markup = '';
+        objects.forEach(function(object) {
+          console.log(object.title);
+          markup += '<div>' + object.title + '</div>';
+        });
+        document.getElementById('nm_gigs_box').innerHTML = markup
+      }).catch(err => {
+        console.log(err);
+      });
+    </script>
+  </div>
 </ion-content>
