@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import Cosmic from 'cosmicjs';
+import {contentUpdateListener} from "../../app/contentUpdateListener";
 
 @Component({
   selector: 'page-home',
@@ -9,8 +9,13 @@ import Cosmic from 'cosmicjs';
 
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  data: string;
 
+  private contentListener: contentUpdateListener;
+
+  constructor(public navCtrl: NavController) {
+    this.contentListener = new contentUpdateListener("gigs-upcoming");
+    this.data = this.contentListener.run();
   }
 
 }
