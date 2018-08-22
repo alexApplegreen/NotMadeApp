@@ -2,9 +2,6 @@
   <ion-navbar>
     <ion-title>Home</ion-title>
   </ion-navbar>
-  <script>
-    import Cosmic from 'cosmicjs'
-  </script>
 </ion-header>
 
 <ion-content padding>
@@ -26,23 +23,5 @@
       </h2>
     </div>
     <script src="https://unpkg.com/cosmicjs@3.0.1/cosmicjs.browser.min.js"></script>
-    <script>
-      // TODO fix this shit
-      var bucket = Cosmic.bucket({
-        slug: 'gigs-upcoming'
-      });
-      console.log("created bucket");
-      bucket.getObject().then(data => {
-        var objects = data.objects;
-        var markup = '';
-        objects.forEach(function(object) {
-          console.log(object.title);
-          markup += '<div>' + object.title + '</div>';
-        });
-        document.getElementById('nm_gigs_box').innerHTML = markup
-      }).catch(err => {
-        console.log(err);
-      });
-    </script>
   </div>
 </ion-content>

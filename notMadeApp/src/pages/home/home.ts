@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-
-// TODO change background color to dark
+import Cosmic from 'cosmicjs';
 
 @Component({
   selector: 'page-home',
