@@ -5,9 +5,9 @@
 </ion-header>
 
 <ion-content padding>
-  <div class="home_body" style="background: black; color: white;">
+  <div class="home_body">
     <div class="nm_centered_image">
-      <img src="images/notmade_freigestellt_weiß.png">
+      <img src="images/notmade_freigestellt.png">
     </div>
     <div class="nm_header">
       <p>
@@ -15,9 +15,14 @@
       </p>
     </div>
     <div class="nm_centered_image">
-      <img src="images/divider_white.png">
+      <img src="images/divider_black.png">
     </div>
-    <div id="nm_gigs_box">
+    <div id="nm_gigs_box" style="
+        display: block;
+        width: 90%;
+        height: 500px;
+        margin: 5%;
+        border: 1px solid black">
       <h2 style="margin-top: 20px">
         Upcoming Gigs:
       </h2>
@@ -25,6 +30,5 @@
         {{ data }}
       </p>
     </div>
-    <script src="https://unpkg.com/cosmicjs@3.0.1/cosmicjs.browser.min.js"></script>
   </div>
 </ion-content>

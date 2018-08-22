@@ -14,8 +14,16 @@ export class HomePage {
   private contentListener: contentUpdateListener;
 
   constructor(public navCtrl: NavController) {
-    this.contentListener = new contentUpdateListener("gigs-upcoming");
-    this.data = this.contentListener.run();
+    try {
+      this.contentListener = new contentUpdateListener("gigs-upcoming");
+      this.data = this.contentListener.run();
+    }
+    catch (e) {
+      this.data = "404 no data received";
+    }
+    finally {
+      console.log(this.data);
+    }
   }
 
 }
