@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {contentUpdateListener} from "../../app/contentUpdateListener";
+import { Device} from "@ionic-native/device";
+import { iosContentUpdateListener } from "../../app/iosContentUpdateListener";
 
 @Component({
   selector: 'page-home',
@@ -10,19 +11,23 @@ import {contentUpdateListener} from "../../app/contentUpdateListener";
 export class HomePage {
 
   data: string;
-
-  private contentListener: contentUpdateListener;
+  private device: Device;
 
   constructor(public navCtrl: NavController) {
-    try {
-      this.contentListener = new contentUpdateListener("gigs-upcoming");
-      this.data = this.contentListener.run();
+    this.device = new Device();
+
+    if (this.device.platform !== 'Android') {
+      let l = new iosContentUpdateListener('gigs-upcoming');
+      try {
+        this.data = l.check();
+      }
+      catch (e) {
+        console.log("No new Data available.");
+      }
     }
-    catch (e) {
-      this.data = "404 no data received";
-    }
-    finally {
-      console.log(this.data);
+    else {
+      // TODO instatiate android listener
+      this.data = "no Android Listener avaiable yet."
     }
   }
 

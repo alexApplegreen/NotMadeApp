@@ -1,5 +1,3 @@
-// TODO
-
 import Cosmic from 'cosmicjs';
 
 export class contentInterfacer {
@@ -11,6 +9,7 @@ export class contentInterfacer {
   }
 
   public getContent() {
+    // TODO get this running, use AJAX Api calls maybe?
     try {
       Cosmic.getObjectType({
         bucket: {

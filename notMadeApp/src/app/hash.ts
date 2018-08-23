@@ -1,5 +1,3 @@
-// TODO
-
 import {Md5} from "ts-md5";
 
 export class hash {
