@@ -23,7 +23,7 @@ export class contentInterfacer {
     }
     catch (e) {
       console.log("no connection to bucket");
-      return "failed";
+      return " 404 failed";
     }
   }
 }
