@@ -1,6 +1,6 @@
 import {contentNotifier} from "./contentNotifier";
 import {contentInterfacer} from "./contentInterfacer";
-import {ContentManager} from "../../app/ContentManager";
+import {ContentManager} from "./ContentManager";
 
 /**
  * gets new data from backend in background
@@ -20,7 +20,6 @@ export abstract class abstractListener {
   abstract check(slug: string);
 
   compareUpdate(data: string) {
-    // TODO
     this.manager.compare();
   }
 }
