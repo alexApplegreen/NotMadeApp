@@ -1,29 +1,21 @@
-import Cosmic from 'cosmicjs';
 
+import * as request from 'request-promise-native';
 export class contentInterfacer {
 
   private slug: string;
+  private bucket: any;
 
   constructor(slug: string) {
     this.slug = slug;
   }
 
   public getContent() {
-    // TODO get this running, use AJAX Api calls maybe?
-    try {
-      Cosmic.getObjectType({
-        bucket: {
-          slug: 'notmadeapp'
-        }
-      }, {
-        type_slug: this.slug
-      }, (err, res) => {
-        return res.objects.all;
-      });
-    }
-    catch (e) {
-      console.log("no connection to bucket");
-      return " 404 failed";
-    }
+    let baseUrl = 'http://localhost:1337/';
+    var options = {
+      uri: baseUrl + this.slug,
+    };
+    let result = request.get(options);
+    console.log(result);
+    return result;
   }
 }

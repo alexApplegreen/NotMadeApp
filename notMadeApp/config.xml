@@ -83,7 +83,7 @@
     <allow-navigation href="http://192.168.178.43:8100" />
     <plugin name="cordova-plugin-device" spec="^2.0.2" />
     <plugin name="cordova-plugin-background-fetch" spec="^5.4.1" />
+    <plugin name="cordova-plugin-nativestorage" spec="^2.3.2" />
     <engine name="android" spec="^7.0.0" />
     <engine name="ios" spec="^4.5.5" />
-    <plugin name="cordova-plugin-nativestorage" spec="^2.3.2" />
 </widget>

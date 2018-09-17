@@ -10,7 +10,6 @@ export abstract class abstractListener {
   protected slug: string;
   protected notifier: contentNotifier;
   protected interfacer: contentInterfacer;
-  protected manager: ContentManager;
 
   constructor(slug: string) {
     this.slug = slug;
@@ -20,6 +19,6 @@ export abstract class abstractListener {
   abstract check(slug: string);
 
   compareUpdate(data: string) {
-    this.manager.compare();
+    return new ContentManager(this.slug, data).compare();
   }
 }

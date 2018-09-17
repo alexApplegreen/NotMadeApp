@@ -1,0 +1,27 @@
+{
+  "connection": "default",
+  "collectionName": "",
+  "info": {
+    "name": "post",
+    "description": "News article/ Blog Post"
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "Topic": {
+      "default": "",
+      "type": "string"
+    },
+    "main text": {
+      "default": "",
+      "type": "text"
+    },
+    "media": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    }
+  }
+}

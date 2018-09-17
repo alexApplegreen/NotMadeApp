@@ -1,0 +1,31 @@
+{
+  "connection": "default",
+  "collectionName": "gig",
+  "info": {
+    "name": "gig",
+    "description": "content template for upcoming gig"
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "default": "",
+      "type": "string"
+    },
+    "date": {
+      "default": "",
+      "type": "date"
+    },
+    "description": {
+      "default": "",
+      "type": "text"
+    },
+    "thumbnail": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    }
+  }
+}

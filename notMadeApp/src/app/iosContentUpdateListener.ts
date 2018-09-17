@@ -1,5 +1,6 @@
 import { abstractListener } from "./abstractListener";
 import { BackgroundFetch, BackgroundFetchConfig } from "@ionic-native/background-fetch";
+import { NativeStorage} from "@ionic-native/native-storage";
 
 /**
  * specifies abstract class abstractListener
@@ -8,7 +9,10 @@ export class iosContentUpdateListener extends abstractListener {
 
   private config: BackgroundFetchConfig;
   private backgroundFetch: BackgroundFetch;
-  private data: string;
+  private data: any;
+  private storage: NativeStorage;
+
+  // specifies, wether new Data can be queried
   private dataAvailable: boolean;
 
   /**
@@ -19,6 +23,7 @@ export class iosContentUpdateListener extends abstractListener {
     super(slug);
 
     this.dataAvailable = false;
+    this.storage = new NativeStorage();
 
     // configure backgroundFetch
     this.config = {
@@ -26,12 +31,18 @@ export class iosContentUpdateListener extends abstractListener {
     };
 
     // start backgroundfetch request to IOS
+    // callback is executed at every background fetch.
     try {
       this.backgroundFetch.configure(this.config).then(() => {
+        // update field data with data from interfacer
         this.data = this.interfacer.getContent();
-        this.dataAvailable = true;
-        this.compareUpdate(this.data);
-        this.notifier.notifyUser("news Available!");
+        // if manager returns true, the content is new.
+        if (this.compareUpdate(this.data)) {
+          // write required data for later checkup
+          this.storage.setItem(this.slug, this.data);
+          this.dataAvailable = true;
+          this.notifier.notifyUser("news Available!");
+        }
         this.backgroundFetch.finish();
       });
     }
@@ -52,14 +63,6 @@ export class iosContentUpdateListener extends abstractListener {
     else {
       throw new Error();
     }
-  }
-
-  /**
-   * get Availability of data
-   * @returns {boolean}
-   */
-  getAvailability():boolean {
-    return this.dataAvailable;
   }
 
 }

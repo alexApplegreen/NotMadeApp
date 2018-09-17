@@ -11,8 +11,7 @@ import { contentInterfacer} from "../../app/contentInterfacer";
 
 export class HomePage {
 
-  data: string;
-  gigs: string;
+  gigs: any;
   private device: Device;
 
   /**
@@ -23,12 +22,15 @@ export class HomePage {
   constructor(public navCtrl: NavController) {
 
     this.device = new Device();
+
+    // load initial content
     this.gigs = this.loadUpcomingGigs();
 
     if (this.device.platform !== 'Android') {
-      let l = new iosContentUpdateListener('gigs-upcoming');
+      let l = new iosContentUpdateListener('female-fronted-rock-night');
       try {
-        this.data = l.check();
+        // update field with data from UpdateListener
+        this.gigs = l.check();
       }
       catch (e) {
         console.log("No new Data available.");
@@ -36,12 +38,17 @@ export class HomePage {
     }
     else {
       // TODO instatiate android listener
-      this.data = "no Android Listener avaiable yet."
+      this.gigs = "no Android Listener avaiable yet."
     }
   }
 
-  loadUpcomingGigs():string {
-    let interfacer = new contentInterfacer('gigs-upcoming');
+  /**
+   * used to initially load content from Cosmic bucket.
+   * @returns {string} data from container
+   */
+  loadUpcomingGigs() {
+    console.log("loaded initially");
+    let interfacer = new contentInterfacer('gig');
     return interfacer.getContent();
   }
 
