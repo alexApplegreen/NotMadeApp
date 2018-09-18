@@ -11,7 +11,7 @@ import { contentInterfacer} from "../../app/contentInterfacer";
 
 export class HomePage {
 
-  gigs: any;
+  gigs: string[];
   private device: Device;
 
   /**
@@ -21,18 +21,23 @@ export class HomePage {
    */
   constructor(public navCtrl: NavController) {
 
+    this.gigs = [];
     this.device = new Device();
 
     // load initial content
-    let data = this.loadUpcomingGigs().then((res) => {
-      this.gigs = res[0].name;
+    this.loadUpcomingGigs().then((res) => {
+      for (let i = 0; i < res.length; i++) {
+        console.log(res[i].name);
+        this.gigs[i] = res[i].name;
+      }
     });
 
+
     if (this.device.platform !== 'Android') {
-      let l = new iosContentUpdateListener('female-fronted-rock-night');
+      let l = new iosContentUpdateListener('gig');
       try {
         // update field with data from UpdateListener
-        this.gigs = l.check();
+        //this.gigs = l.check();
       }
       catch (e) {
         console.log("No new Data available.");
@@ -40,7 +45,6 @@ export class HomePage {
     }
     else {
       // TODO instatiate android listener
-      this.gigs = "no Android Listener avaiable yet."
     }
   }
 
