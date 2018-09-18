@@ -9,13 +9,14 @@ export class contentInterfacer {
     this.slug = slug;
   }
 
-  public getContent() {
+  public async getContent() {
     let baseUrl = 'http://localhost:1337/';
     var options = {
       uri: baseUrl + this.slug,
+      dataType: 'application/json',
     };
-    let result = request.get(options);
-    console.log(result);
+    let response = await request.get(options);
+    let result = JSON.parse(response);
     return result;
   }
 }

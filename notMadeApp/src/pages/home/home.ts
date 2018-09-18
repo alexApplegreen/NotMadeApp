@@ -24,7 +24,9 @@ export class HomePage {
     this.device = new Device();
 
     // load initial content
-    this.gigs = this.loadUpcomingGigs();
+    let data = this.loadUpcomingGigs().then((res) => {
+      this.gigs = res[0].name;
+    });
 
     if (this.device.platform !== 'Android') {
       let l = new iosContentUpdateListener('female-fronted-rock-night');
